@@ -1,0 +1,25 @@
++
+-
+*
+/
+<=
+>=
+<
+>
+==
+=
+{
+}
+(
+)
+;
+  -> space
+  -> newline
+"
+,
+;
+if
+else
+while
+print
+read

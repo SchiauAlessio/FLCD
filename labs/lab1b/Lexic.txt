@@ -1,0 +1,28 @@
+Alphabet
+a-z
+A-Z
+0-9
+_ -> underline
+
+
+operators: +, -, *, /, ==,<=, < , >=, >, =
+
+separators: 
+space
+newline
+;
+,
+
+reserved words: if, else, while, var, print, read, array, int, string
+
+
+letter::= "a"|"b"|...|"z"|"A"|"B"|...|"Z"
+digit::= "0"|"1"|...|"9"
+underscore = "_"
+space = " "
+non_zero_digit = "1"|"2"|...|"9"
+identifier = (letter|"_"){letter|digit|"_"}
+
+int_constant = ["+"|"-"] non_zero_digit {digit} | "0"
+
+string= """{letter|digit|underscore|space}""" ->starts and ends with "

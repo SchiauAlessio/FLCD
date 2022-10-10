@@ -1,0 +1,37 @@
+program = {statement}
+identifier -> defined in lexic
+plus="+"
+minus="-"
+multiply="*"
+divide="/"
+statements_group = (var_statement|arr_statement|assign_statement|if_statement|while_statement|return_statement|function_call_statement)
+statement = statements_group ";"
+int_expression = int_constant | identifier | 
+                   int_expression (plus|minus|multiply|divide) int_expression |
+                   "(" int_expression (plus|minus|multiply|divide) int_expression ")"
+				   
+string_expression = string_constant | identifier |
+                      string_expression + string_expression			
+
+expression = int_expression | string_expression
+
+only_identifier_list = identifier {"," identifier}					  
+
+identifier_list = identifier ["=" expression] {"," identifier ["=" expression]}
+
+var_declaration_statement = "var" identifier_list
+
+array_declaration_statement = "array" "<" int_constant ">" only_identifier_list
+
+list_of_expressions = expression{"," expression}
+
+assign_statement = identifier "=" expression
+if_statement = "if" "(" condition ")" "{" {statement} "}" ["else" "{" {statement} "}"]
+
+condition = expression ("=="|"<"|"<="|">"|">=") expression
+
+while_statement = "while" "(" condition ")" "{" {statement} "}"
+
+function = "print" | "read"
+
+function_input_output = function "(" expression ")"
