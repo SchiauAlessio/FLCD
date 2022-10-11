@@ -1,0 +1,19 @@
+//max of 3 numbers
+
+var nr1,nr2,nr3 -> missing ;
+nr1 = read();
+nr2 = read();
+nr3 = read();
+maximum; -> did not use var
+
+maximum==nr1; -> wrong assignment
+
+if(nr2 > maximum){
+	maximum=nr2;
+};
+
+if(nr3 > maximum){
+	maximum=nr3;
+};
+
+print(maximum);

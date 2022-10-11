@@ -1,0 +1,13 @@
+//p3: compute the sum of n numbers,
+
+var n, sum;
+sum = 0;
+n = read();
+var currentNr;
+while (i < n){
+	currentNr = read();
+	sum = sum + currentNr;
+	i = i + 1;
+};
+
+print(sum);

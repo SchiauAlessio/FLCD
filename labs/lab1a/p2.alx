@@ -1,0 +1,24 @@
+//verify if a number is prime,
+
+var checkedNumber;
+
+checkedNumber = read();
+
+var isPrime = 1; 
+
+var currentNumber = 2;
+
+while(currentNumber < checkedNumber){
+	if( checkedNumber % currentNumber == 0 ){
+		isPrime = 0;
+	};
+	currentNumber = currentNumber+1;
+
+};
+
+if(isPrime == 1){
+	print("prime");
+	
+} else {
+	print("not prime");
+};
