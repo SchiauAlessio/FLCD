@@ -1,12 +1,13 @@
 //max of 3 numbers
 
-var nr1,nr2,nr3 -> missing ;
-nr1 = read();
+var 1nr,nr2,nr3 -> cannot start with digit
+1nr = read();
 nr2 = read();
 nr3 = read();
-maximum; -> did not use var
+var maximum;
 
-maximum==nr1; -> wrong assignment
+print("Starting the search ); -> no closing "
+maximum==1nr; -> wrong assignment
 
 if(nr2 > maximum){
 	maximum=nr2;

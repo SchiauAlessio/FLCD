@@ -4,7 +4,7 @@ plus="+"
 minus="-"
 multiply="*"
 divide="/"
-statements_group = (var_statement|arr_statement|assign_statement|if_statement|while_statement|return_statement|function_call_statement)
+statements_group = (var_statement|arr_statement|assign_statement|if_statement|while_statement|return_statement|function_input_output_statement)
 statement = statements_group ";"
 int_expression = int_constant | identifier | 
                    int_expression (plus|minus|multiply|divide) int_expression |
@@ -34,4 +34,4 @@ while_statement = "while" "(" condition ")" "{" {statement} "}"
 
 function = "print" | "read"
 
-function_input_output = function "(" expression ")"
+function_input_output_statement = function "(" expression ")"
