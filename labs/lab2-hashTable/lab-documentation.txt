@@ -1,4 +1,4 @@
-
+https://github.com/SchiauAlessio/FLCD/tree/main/labs/lab2-hashTable
 The model.HashTable is a HashTable with separate chaining.
 The available operations are:
 • add: adds a new symbol in the table and returns true. If it already exists, it is not added and false is returned.
