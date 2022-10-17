@@ -1,0 +1,9 @@
+
+The model.HashTable is a HashTable with separate chaining.
+The available operations are:
+• add: adds a new symbol in the table and returns true. If it already exists, it is not added and false is returned.
+    If after adding, the number of added elements is greater than the loadFactor, the table is resized.
+• getPosition: returns the position of the symbol if it exists, represented as a pair of integers which are the index
+    at which the symbol is stored and the position in the bucket that it was inserted in.
+• remove: removes the symbol from the table. If it does not exist, it returns false otherwise true.
+• resize: resizes the table to the next prime number greater than double the current size
