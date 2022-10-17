@@ -38,7 +38,7 @@ public class HashTable<T> {
     }
 
     /**
-     * Adds a key to the symbol table
+     * Adds a key to the symbol table. If the number of added elements exceeds the load factor, the table is resized
      * @param key the key to be added
      * @return true if the key was added and false if it already exists
      */
@@ -93,6 +93,10 @@ public class HashTable<T> {
         return new Pair<>(-1, -1);
     }
 
+    /**
+     * resizes the symbol table by creating a new table having as size the smallest prime number greater than
+     * double the current size and rehashes all the elements
+     */
     private void resize() {
         List<List<T>> oldBuckets = buckets;
         this.size = Utils.getNextPrimeStartingFromDouble(size);
