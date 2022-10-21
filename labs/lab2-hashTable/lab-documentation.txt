@@ -6,4 +6,4 @@ The available operations are:
 • getPosition: returns the position of the symbol if it exists, represented as a pair of integers which are the index
     at which the symbol is stored and the position in the bucket that it was inserted in.
 • remove: removes the symbol from the table. If it does not exist, it returns false otherwise true.
-• resize: resizes the table to the next prime number greater than double the current size
+• resize: resizes the table to the smallest prime number greater than double the current size
