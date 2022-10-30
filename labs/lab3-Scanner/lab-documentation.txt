@@ -1,0 +1,8 @@
+https://github.com/SchiauAlessio/FLCD/tree/main/labs/lab3-Scanner
+Regex is used to match each token to a corresponding type. The scanner receives the program as String and the list
+of tokens from token.in. The method scan performs the scanning process of the program by parsing the program. At each step
+comments and whitespaces are skipped and then each token is matched into the right category and added either to the
+symbol table in case of identifiers or constants table in the case of int and string constants. In the pif
+the string constants correspond to the value -2, int constants -1, tokens from token.in 0 and identifiers
+the position in the symbol table. The scanner also checks for errors and raises a ScannerException if an error is found
+alongside printing it to the console

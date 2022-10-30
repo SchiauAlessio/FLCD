@@ -1,0 +1,13 @@
+//compute the sum of n numbers;
+
+int n, sum;
+sum = 0*2;
+n = read();
+int currentNr;
+while (i < n){
+	currentNr = read();
+	sum = sum + currentNr;
+	i = i + 1;
+};
+
+print(sum);
