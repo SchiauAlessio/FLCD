@@ -4,5 +4,5 @@ of tokens from token.in. The method scan performs the scanning process of the pr
 comments and whitespaces are skipped and then each token is matched into the right category and added either to the
 symbol table in case of identifiers or constants table in the case of int and string constants. In the pif
 the string constants correspond to the value -2, int constants -1, tokens from token.in 0 and identifiers
-the position in the symbol table. The scanner also checks for errors and raises a ScannerException if an error is found
-alongside printing it to the console
+the position in the symbol table. The scanner also checks for errors and raises a ScannerException if an error is found.
+The symbol table is written in the file ST.out and the pif in the file PIF.out.
