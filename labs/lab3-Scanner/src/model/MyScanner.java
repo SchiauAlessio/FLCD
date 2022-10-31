@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 public class MyScanner {
     private final String program;
     private final List<String> tokens;
-    private final HashTable<String> symbolTable;
-    private final HashTable<String> constantsTable;
+    private final SymbolTable symbolTable;
     private final List<Pair<String,Integer>> pif;
     private int index;
     private int currentLine;
@@ -23,8 +22,7 @@ public class MyScanner {
     public MyScanner(String program, List<String> tokens) {
         this.program = program;
         this.tokens = tokens;
-        this.symbolTable = new HashTable<>(107);
-        this.constantsTable = new HashTable<>(107);
+        this.symbolTable = new SymbolTable();
         this.pif = new ArrayList<>();
         this.index = 0;
         this.currentLine = 1;
@@ -83,7 +81,7 @@ public class MyScanner {
         if (matcher.find()) {
             String token = matcher.group(1);
             pif.add(new Pair<>("strConst", -2));
-            constantsTable.add(token);
+            symbolTable.addToStringConstantsTable("\""+token+"\"");
             index += matcher.end();
             System.out.println("Found string constant: " + token);
             return true;
@@ -110,7 +108,7 @@ public class MyScanner {
      * @return true if a match was found, false otherwise.
      */
     private boolean intConstant() {
-        Pattern intRegex = Pattern.compile("^([+-]?[1-9]\\d*|0)");
+        Pattern intRegex = Pattern.compile("^([-]?[1-9]\\d*|0)");
         Matcher matcher = intRegex.matcher(program.substring(index));
         if (matcher.find()) {
             String token = matcher.group(1);
@@ -127,7 +125,7 @@ public class MyScanner {
                 System.out.println("Found int constant: " + token);
             }
             pif.add(new Pair<>("intConst", -1));
-            constantsTable.add(token);
+            symbolTable.addToIntConstantsTable(token);
             index += matcher.end();
             return true;
         }
@@ -162,8 +160,8 @@ public class MyScanner {
         if (matcher.find()) {
             String token = matcher.group(1);
             System.out.println("Found identifier: " + token);
-            if(symbolTable.add(token))
-                pif.add(new Pair<>("id", symbolTable.getPosition(token).getKey()));
+            if(symbolTable.addToIdentifierTable(token))
+                pif.add(new Pair<>("id", symbolTable.getIdentifierTable().getPosition(token).getKey()));
             index += matcher.end();
             return true;
         }
