@@ -1,0 +1,42 @@
+program = {statement}
+plus="+"
+minus="-"
+multiply="*"
+divide="/"
+statements_group = (int_declaration_statement|string_declaration_statement|array_declaration_statement|assign_statement|if_statement|while_statement|function_input_output_statement)
+statement = statements_group ";"
+int_expression = int_constant | identifier | 
+                   int_expression (plus|minus|multiply|divide) int_expression |
+                   "(" int_expression (plus|minus|multiply|divide) int_expression ")"
+				   
+string_expression = string_constant | identifier |
+                      string_expression + string_expression			
+
+type = "int" | "string"
+
+expression = int_expression | string_expression
+
+only_identifier_list = identifier {"," identifier}					  
+
+identifier_list = identifier ["=" expression] {"," identifier ["=" expression]}
+
+var_declaration_statement = "var" identifier_list
+
+int_declaration_statement = "int" identifier_list
+
+string_declaration_statement = "string" identifier_list
+
+array_declaration_statement = "array" "<" int_constant ">" only_identifier_list
+
+list_of_expressions = expression{"," expression}
+
+assign_statement = identifier "=" expression
+if_statement = "if" "(" condition ")" "{" {statement} "}" ["else" "{" {statement} "}"]
+
+condition = expression ("=="|"<"|"<="|">"|">=") expression
+
+while_statement = "while" "(" condition ")" "{" {statement} "}"
+
+function = "print" | "read"
+
+function_input_output_statement = function "(" expression ")"
