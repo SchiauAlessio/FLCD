@@ -89,8 +89,8 @@ public class MyScanner {
             return true;
         }
 
-        //start with "  accept anything in between and end with "
-        strRegex = Pattern.compile("^\".*\"$");
+        //starts with "  contains at least one character not " and ends with "
+        strRegex = Pattern.compile("^\"[^\"]+\"");
         matcher = strRegex.matcher(program.substring(index));
         if (matcher.find()) {
             throw new ScannerException("Lexical error: Invalid characters inside string on line " + currentLine);
