@@ -1,0 +1,8 @@
+https://github.com/SchiauAlessio/FLCD/tree/main/labs/lab4-FA
+
+Operations are implemented on an Automaton read from the file "fa.in"
+It contains the states,the alphabet, the initial state, the final states and the transitions.
+The method used for checking the provided word is checkAccepted() which returns a boolean value.
+The method starts in the initial state and for each letter in the word it checks if there is a transition from the
+current state to another state with the letter as label. If the final letter is not a final state (output state) or
+no such transition exists, the word is not accepted and the method returns false; Otherwise, return true.

@@ -2,12 +2,14 @@
 -
 *
 /
+%
 <=
 >=
 <
 >
 ==
 =
+!=
 {
 }
 (
@@ -15,6 +17,8 @@
 ;
 space
 newline
+int
+string
 "
 ,
 ;
@@ -23,6 +27,7 @@ else
 while
 print
 read
+input
 A
 B
 C
