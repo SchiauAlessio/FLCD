@@ -6,3 +6,17 @@ The method used for checking the provided word is checkAccepted() which returns 
 The method starts in the initial state and for each letter in the word it checks if there is a transition from the
 current state to another state with the letter as label. If the final letter is not a final state (output state) or
 no such transition exists, the word is not accepted and the method returns false; Otherwise, return true.
+
+nzdigit = 1|2| .. |9
+digit = 0|1|..|9
+number = nzdigit{digit}
+letter = a|b|..|z|A|B..|Z
+character = letter | digit
+listOfCharacters = {character} {"," character}
+firstLine = "states" "=" "{" listOfCharacters "}"
+secondLine = "in_state" "=" {character}
+thirdLine = "out_states" "=" "{" listOfCharacters "}"
+fourthLine = "alphabet" "=" "{" listOfCharacters "}"
+triple = "(" {character} "," {character} "," {character} ")"
+fifthLine = "transitions" "=" "{" triple ";" triple} "}"
+inputFile = firstLine "\n" secondLine "\n" thirdLine "\n" fourthLine "\n" fifthLine

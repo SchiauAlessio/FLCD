@@ -109,30 +109,4 @@ public class FiniteAutomaton {
     public boolean checkAccepted(String word) {
         return checkAccepted(this.stringToList(word));
     }
-
-    public List<String> getSubstringAccepted(List<String> word) {
-        String currentState = initialState;
-        List<String> nextAccepted = new ArrayList<>();
-        for (String letter : word) {
-            boolean found = false;
-            for (Transition transition : transitions) {
-                if (transition.from().equals(currentState) && transition.label().equals(letter)) {
-                    currentState = transition.to();
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) break;
-            nextAccepted.add(letter);
-        }
-        for (String outputState : outputStates) {
-            if (outputState.equals(currentState)) return nextAccepted;
-        }
-        return null;
-    }
-
-    public String getSubstringAccepted(String word) {
-        List<String> substring = getSubstringAccepted(this.stringToList(word));
-        return substring == null ? null : this.listToString(substring);
-    }
 }
