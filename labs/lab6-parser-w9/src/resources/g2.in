@@ -1,0 +1,39 @@
+program decl_list seq declaration digit identifier_character aux_sequence otherwise_stmt identifier letter sequence lowercase_letter uppercase_letter id_or_const aux_stmt new_decl compound_stmt primitive_type expression2 term2 array_decl type stmt_list stmt simple_stmt assign_stmt expression term factor io_stmt struct_stmt if_stmt while_stmt condition relation const io_stmt
+; [ ] ( ) { } <=  >= = == != > <  bool char integer string float array identifier nr constant + - * / print read if otherwise while integer float string A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 _ epsilon
+program
+program -> decl_list compound_stmt
+decl_list -> declaration new_decl
+new_decl -> epsilon | decl_list
+declaration  -> type identifier ;
+primitive_type  ->  bool | char | integer | string | float
+array_decl  ->  array primitive_type [ constant ]
+type -> primitive_type | array_decl
+compound_stmt -> stmt_list
+stmt_list -> stmt aux_stmt
+aux_stmt -> epsilon | stmt_list
+stmt -> simple_stmt | struct_stmt
+simple_stmt -> assign_stmt | io_stmt
+assign_stmt -> identifier = expression ;
+expression -> term expression2
+expression2 -> + term expression2 | - term expression2 | epsilon
+term -> factor term2
+term2 -> * factor term2 | / factor term2 | epsilon
+factor -> ( expression ) | identifier | constant
+io_stmt -> print ( id_or_const ) ; | read ( identifier ) ;
+id_or_const -> identifier | constant
+struct_stmt -> if_stmt | while_stmt
+if_stmt -> if ( condition ) { stmt_list } otherwise_stmt
+otherwise_stmt -> epsilon | otherwise { stmt_list }
+while_stmt -> while ( condition ) { stmt_list }
+condition -> expression relation expression
+relation -> < | <= | == | != | > | >=
+const -> integer | float | char | string
+identifier -> letter seq
+lowercase_letter -> a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+uppercase_letter -> A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+letter -> lowercase_letter | uppercase_letter
+digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+identifier_character -> letter | digit | _
+seq -> epsilon | sequence
+sequence -> identifier_character aux_sequence
+aux_sequence -> epsilon | sequence
