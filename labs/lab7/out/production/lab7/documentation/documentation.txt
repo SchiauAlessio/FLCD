@@ -1,0 +1,41 @@
+Get First
+
+FIRST(X) for a grammar symbol X is the set of terminals that begin the strings derivable from X.
+
+Rules to compute FIRST set:
+
+1) If x is a terminal, then FIRST(x) = { ‘x’ }
+2) If x-> Є, is a production rule, then add Є to FIRST(x).
+3) If X->Y1 Y2 Y3….Yn is a production,
+    1.FIRST(X) = FIRST(Y1)
+    2.If FIRST(Y1) contains Є then FIRST(X) = { FIRST(Y1) – Є } U { FIRST(Y2) }
+    3.If FIRST (Yi) contains Є for all i = 1 to n, then add Є to FIRST(X).
+
+Get Follow
+
+Follow(X) to be the set of terminals that can appear immediately to the right of Non-Terminal X in some sentential form.
+1) FOLLOW(S) = { $ }   // where S is the starting Non-Terminal
+
+2) If A -> pBq is a production, where p, B and q are any grammar symbols,
+   then everything in FIRST(q)  except Є is in FOLLOW(B).
+
+3) If A->pB is a production, then everything in FOLLOW(A) is in FOLLOW(B).
+
+4) If A->pBq is a production and FIRST(q) contains Є,
+   then FOLLOW(B) contains { FIRST(q) – Є } U FOLLOW(A)
+
+Generate Parser Table
+
+We firstly generate a table that has as the row head all possible elements and as the column heads we have the terminals and the epsilon
+We fill each cell with possible actions. If the elements are different we have (err,-1), if the elements are terminals we have (pop,-1) and if the elements are $ we have (acc,-1)
+We parse through the right hand side of the productions and for each symbol of a production we edit the respective cell with the element corresponding to the pair of elements.
+
+Parse Sequence
+
+We create 2 stacks, alpha and beta. In alpha we add the sequence in the order that we want to iterate through it and in beta we add the starting symbol.
+We analyze the top of the stacks. Depending on the value of their corresponding cell in the parsing table we take different actions. If the elements are both terminals, we go to the next element in both stacks. If the cell has the "err" value we trow a Syntax error. Otherwise we remove the top of the beta stack and add the terminals or nonTerminals from the cell of the pair.
+
+Generate Tree
+
+We generate a tree from a set of productions. The tree is generated using a stack, which is initialized with a root that has the startings symbol value.
+We iterate through all productions or until the stack is empty. At the beginning of each iteration the current node is popped off the stack. If the value of the current node is a terminal or "epsilon", the node is discarded and the loop continues. If the value is not a terminal or "epsilon", the method gets the next production and creates a new node for each symbol in the production, with the current node as the parent. These child nodes are added to the stack and the list of nodes, and the loop continues until all productions have been processed.
