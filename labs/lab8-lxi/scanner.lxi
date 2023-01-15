@@ -1,0 +1,77 @@
+%{
+#include <stdio.h>
+#include <string.h>
+int lines = 0;
+%}
+
+%option noyywrap
+%option caseless
+
+DIGIT [0-9]
+NON_ZERO_DIGIT [1-9]
+INT_CONSTANT (-|0|{NON_ZERO_DIGIT}{DIGIT}*)
+LETTER [a-zA-Z_]
+STRING_CONSTANT \"({LETTER}|{DIGIT})*\"
+IDENTIFIER {LETTER}({LETTER}|{DIGIT})*
+BAD_INT_CONSTANT (0|[+])?{DIGIT}+
+BAD_IDENTIFIER {DIGIT}+{LETTER}+({LETTER}|{DIGIT})*
+
+
+%%
+
+VAR {printf("Reserved word: %s\n", yytext);}
+END {printf( "Reserved word: %s\n", yytext);}
+BOOLEAN {printf( "Reserved word: %s\n", yytext);}
+CHAR {printf( "Reserved word: %s\n", yytext);}
+INTEGER {printf( "Reserved word: %s\n", yytext);}
+REAL {printf( "Reserved word: %s\n", yytext);}
+ARRAY {printf( "Reserved word: %s\n", yytext);}
+OF {printf( "Reserved word: %s\n", yytext);}
+BEGIN {printf( "Reserved word: %s\n", yytext);}
+READ {printf( "Reserved word: %s\n", yytext);}
+WRITE {printf( "Reserved word: %s\n", yytext);}
+IF {printf( "Reserved word: %s\n", yytext);}
+THEN {printf( "Reserved word: %s\n", yytext);}
+ELSE {printf( "Reserved word: %s\n", yytext);}
+WHILE {printf( "Reserved word: %s\n", yytext);}
+DO {printf( "Reserved word: %s\n", yytext);}
+PRINT {printf( "Reserved word: %s\n", yytext);}
+STRING {printf( "Reserved word: %s\n", yytext);}
+
+
+
+"int"|"char"|"if"|"print"|"read"|"else"|"while" { printf("%s - reserved word\n", yytext);}
+
+{IDENTIFIER} {printf("%s - identifier\n", yytext);}
+
+{BAD_IDENTIFIER} {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+
+{INT_CONSTANT} {printf("%s - int constant\n", yytext);}
+
+{BAD_INT_CONSTANT} {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+
+{STRING_CONSTANT} {printf("%s - str constant\n", yytext);}
+
+"+"|"-"|"*"|"/"|"%"|"="|">"|">="|"<"|"<="|"=="|"!="|"&&"|"||" printf("%s - operator\n", yytext);
+
+";"|"("|")"|"{"|"}"|"," printf("%s - separator\n", yytext);
+
+
+[ \t]+ {}
+
+[\n]+ {++lines;}
+
+"//".*
+
+. {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+%%
+
+int main(int argc, char **argv )
+{ 
+    if ( argc > 1 )
+        yyin = fopen(argv[1], "r");
+    else
+        yyin = stdin;
+    yylex();
+
+}

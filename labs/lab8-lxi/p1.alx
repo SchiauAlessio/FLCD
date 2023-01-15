@@ -1,0 +1,17 @@
+var nr1,nr2,nr3;
+nr1 = read();
+nr2 = read();
+nr3 = read();
+var minimum;
+
+minimum=nr1;
+
+if(nr2 < minimum){
+	minimum=nr2;
+};
+
+if(nr3 < minimum){
+	minimum=nr3;
+};
+
+print(minimum);
